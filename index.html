@@ -62,7 +62,13 @@
     $.material.init();
 
     var websocketPort = ':8081';
-    var exampleSocket = new WebSocket('ws://' + window.location.hostname + websocketPort);
+    var websocketProtocol = 'ws://';
+
+    if (window.location.protocol == 'https:') {
+        websocketProtocol = 'wss://';
+    }
+
+    var exampleSocket = new WebSocket(websocketProtocol + window.location.hostname + websocketPort);
 
     // обработчик входящих сообщений
     exampleSocket.onmessage = function (event) {
