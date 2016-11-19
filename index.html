@@ -61,6 +61,7 @@
 
     $.material.init();
 
+    var = {};
     var websocketPort = ':8081';
     var websocketProtocol = 'ws://';
 
@@ -68,16 +69,19 @@
         websocketProtocol = 'wss://';
     }
 
-    var exampleSocket = new WebSocket(websocketProtocol + window.location.hostname + websocketPort);
+    function websocketCreate() {
+        websocket = new WebSocket(websocketProtocol + window.location.hostname + websocketPort);
 
-    // обработчик входящих сообщений
-    exampleSocket.onmessage = function (event) {
-        console.log(event);
-        $('.alert').show();
-    };
+        websocket.onmessage = function (event) {
+            console.log(event);
+            $('.alert').show();
+        };
+    }
+
+    websocketCreate();
 
     function sendSocketHello() {
-        exampleSocket.send('hello');
+        websocket.send('hello');
     }
 
 

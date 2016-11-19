@@ -1,6 +1,7 @@
 var static = require('node-static');
 var file = new static.Server();
-require('http').createServer(function (request, response) {
+var http = require('http');
+var httpServer = http.createServer(function (request, response) {
     request.addListener('end', function () {
         file.serve(request, response);
     }).resume();
@@ -13,8 +14,11 @@ var clients = {};
 
 // WebSocket-сервер на порту 8081
 var webSocketServer = new WebSocketServer.Server({
-    port: 8081
+    //port: 8081
+    //port: process.env.PORT || 3000
+    server: httpServer
 });
+
 webSocketServer.on('connection', function (ws) {
 
     var id = Math.random();
