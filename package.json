@@ -19,6 +19,7 @@
   "homepage": "https://github.com/shockwaves/lolkek#readme",
   "dependencies": {
     "bootstrap-material-design": "^0.5.10",
-    "node-static": "^0.7.9"
+    "node-static": "^0.7.9",
+    "ws": "^1.1.1"
   }
 }
